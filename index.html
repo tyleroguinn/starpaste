@@ -180,11 +180,6 @@ h2 small { font-family: var(--font-body); font-size: 13px; font-weight: 700; col
 <script>
 const DATA = [{"id": "planets", "name": "Planets & Luminaries", "s": [["☉", "Sun"], ["☽", "Moon"], ["☿", "Mercury"], ["♀", "Venus"], ["♁", "Earth"], ["♂", "Mars"], ["♃", "Jupiter"], ["♄", "Saturn"], ["♅", "Uranus"], ["♆", "Neptune"], ["♇", "Pluto"]]}, {"id": "zodiac", "name": "Zodiac Signs", "s": [["♈", "Aries"], ["♉", "Taurus"], ["♊", "Gemini"], ["♋", "Cancer"], ["♌", "Leo"], ["♍", "Virgo"], ["♎", "Libra"], ["♏", "Scorpio"], ["♐", "Sagittarius"], ["♑", "Capricorn"], ["♒", "Aquarius"], ["♓", "Pisces"]]}, {"id": "major-aspects", "name": "Major Aspects", "s": [["☌", "Conjunction 0°"], ["⚹", "Sextile 60°"], ["□", "Square 90°"], ["△", "Trine 120°"], ["☍", "Opposition 180°"]]}, {"id": "minor-aspects", "name": "Minor Aspects", "s": [["⚺", "Semi-sextile 30°"], ["⚻", "Quincunx 150°"]]}, {"id": "points", "name": "Points & Moons", "s": [["☊", "North Node"], ["☋", "South Node"], ["⚸", "Black Moon Lilith"], ["⊗", "Part of Fortune"]]}, {"id": "asteroids", "name": "Asteroids & Centaurs", "s": [["⚳", "Ceres"], ["⚴", "Pallas"], ["⚵", "Juno"], ["⚶", "Vesta"], ["⚷", "Chiron"]]}, {"id": "elements", "name": "Elements", "s": [["🜂", "Fire"], ["🜃", "Earth"], ["🜁", "Air"], ["🜄", "Water"]]}, {"id": "moon-phases", "name": "Moon Phases", "s": [["🌑", "New Moon"], ["🌒", "Waxing Crescent"], ["🌓", "First Quarter"], ["🌔", "Waxing Gibbous"], ["🌕", "Full Moon"], ["🌖", "Waning Gibbous"], ["🌗", "Last Quarter"], ["🌘", "Waning Crescent"]]}, {"id": "extras", "name": "Chart Extras", "s": [["℞", "Retrograde"], ["☄", "Comet"], ["☀", "Sun (rays)"]]}, {"id": "sparkles", "name": "Stars & Sparkles", "s": [["★", "Star"], ["☆", "Star (outline)"], ["✦", "Sparkle"], ["✧", "Sparkle (outline)"], ["⋆", "Tiny Star"], ["✩", "Outlined Star"], ["✨", "Sparkles"], ["🌙", "Crescent Moon"], ["🪐", "Ringed Planet"], ["🌟", "Glowing Star"], ["💫", "Dizzy Star"]]}, {"id": "alt-forms", "name": "Alternate Glyphs", "s": [["☾", "Moon (waning)"], ["⛢", "Uranus (astronomical)"]]}];
 const COLORS = ["--lilac","--pink","--peach","--mint","--sky","--butter"];
-const ZODIAC_DATES = {
-  Aries:"Mar 21–Apr 19", Taurus:"Apr 20–May 20", Gemini:"May 21–Jun 20", Cancer:"Jun 21–Jul 22",
-  Leo:"Jul 23–Aug 22", Virgo:"Aug 23–Sep 22", Libra:"Sep 23–Oct 22", Scorpio:"Oct 23–Nov 21",
-  Sagittarius:"Nov 22–Dec 21", Capricorn:"Dec 22–Jan 19", Aquarius:"Jan 20–Feb 18", Pisces:"Feb 19–Mar 20"
-};
 const chips = document.getElementById("chips");
 const main = document.getElementById("main");
 
@@ -202,7 +197,7 @@ DATA.forEach((cat, i) => {
   cat.s.forEach(([ch, name]) => {
     const m = name.match(/^(.*?)\s(\d+°)$/);
     const label = m ? m[1] : name;
-    const detail = m ? m[2] : ZODIAC_DATES[name] || "";
+    const detail = m ? m[2] : "";
     const b = document.createElement("button");
     b.className = "tile"; b.type = "button";
     b.setAttribute("aria-label", `Copy ${name} symbol`);
