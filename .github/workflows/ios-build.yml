@@ -1,0 +1,26 @@
+# Checks that the iPhone app in ios/ still builds. Doesn't touch the website.
+name: iOS build
+
+on:
+  pull_request:
+    paths: ["ios/**", ".github/workflows/ios-build.yml"]
+  push:
+    branches: [main]
+    paths: ["ios/**", ".github/workflows/ios-build.yml"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build app and keyboard for the simulator
+        run: |
+          xcodebuild -version
+          xcodebuild build \
+            -project ios/Starpaste.xcodeproj \
+            -scheme Starpaste \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO
